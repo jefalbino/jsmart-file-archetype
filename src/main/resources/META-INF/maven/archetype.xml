@@ -1,0 +1,18 @@
+<archetype xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype/1.0.0 http://maven.apache.org/xsd/archetype-1.0.0.xsd">
+
+    <id>jsmart5-file-archetype</id>
+
+    <sources>
+        <source>src/main/java/adapter/Adapter.java</source>
+        <source>src/main/java/bean/HomeBean.java</source>
+		<source>src/main/java/service/SpringService.java</source>
+    </sources>
+
+    <resources>
+		<resource>src/main/resources/texts.properties</resource>
+        <resource>src/main/webapp/WEB-INF/home.jsp</resource>
+        <resource>src/main/webapp/WEB-INF/webConfig.xml</resource>
+    </resources>
+
+</archetype>

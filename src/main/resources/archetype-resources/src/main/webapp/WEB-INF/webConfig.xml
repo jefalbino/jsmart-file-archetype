@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-config>
+    <package-scan>${package}</package-scan>
+
+    <session-timeout>30</session-timeout>
+
+    <welcome-url>/home</welcome-url>
+
+    <url-patterns>
+        <url-pattern>/home</url-pattern>
+    </url-patterns>
+
+    <message-files>
+        <message-file>texts</message-file>
+    </message-files>
+
+    <default-locale>en</default-locale>
+	
+	<upload-config maxFileSize="20848820" maxRequestSize="418018841" fileSizeThreshold="1048576">/tmp</upload-config>
+
+</web-config>
+
