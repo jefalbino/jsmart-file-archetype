@@ -123,15 +123,13 @@ public class HomeBean {
                 return Collections.EMPTY_LIST;
             }
 
-            if (fileMap.size() <= size) {
-                return new ArrayList<>(fileMap.values());
-            }
+            List<Adapter> adapterList = new ArrayList<>(fileMap.values());
 
-            List<Adapter> adapterList = new ArrayList<>();
-            for (int i = offsetIndex; i < fileMap.size(); i++) {
-                // TODO
+            if (offsetIndex + size <= adapterList.size()) {
+                return adapterList.subList(offsetIndex, offsetIndex + size);
+            } else {
+                return adapterList.subList(offsetIndex, adapterList.size());
             }
-            return adapterList;
         }
     }
 }

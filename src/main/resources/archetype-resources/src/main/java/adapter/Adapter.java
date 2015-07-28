@@ -31,4 +31,21 @@ public class Adapter {
     public void setFileSize(Long fileSize) {
         this.fileSize = fileSize;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Adapter adapter = (Adapter) o;
+
+        if (!fileName.equals(adapter.fileName)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return fileName.hashCode();
+    }
 }

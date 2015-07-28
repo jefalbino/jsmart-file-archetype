@@ -21,7 +21,9 @@
                 <sm:header title="@{texts.file.archetype.feedback.alert}">
                     <sm:icon name="glyphicon-fire" />
                 </sm:header>
+
                 <!-- Message will be added via WebContext on HomeBean -->
+
                 <div style="text-align: right;">
                     <sm:button label="I got it!" onClick="$('#feedback').alert('close');" />
                 </div>
@@ -34,7 +36,8 @@
                         style="text-align: center;" />
 
                 <sm:upload id="upload-id" label="@{texts.file.archetype.upload.label}" rightAddOn="upload-btn"
-                        placeHolder="@{texts.file.archetype.upload.placeholder}" value="@{homeBean.filePart}">
+                        placeHolder="@{texts.file.archetype.upload.placeholder}" value="@{homeBean.filePart}"
+                        onUpload="uploadStatus">
 
                     <!-- Validate the maximum length of chose file -->
                     <sm:validate look="warning" text="@{texts.file.archetype.maximum.file.size}" maxLength="1000000" />
@@ -53,7 +56,7 @@
                     </sm:button>
                 </sm:upload>
 
-                <sm:progressgroup id="upload-status" onInterval="uploadStatus" interval="300">
+                <sm:progressgroup id="upload-status" onInterval="progressStatus" interval="300">
                     <sm:progressbar value="0" look="success" minValue="0" maxValue="40" minWidth="2em" />
                     <sm:progressbar value="40" look="warning" minValue="40" maxValue="80"  striped="true" withLabel="true" />
                     <sm:progressbar value="80" look="danger" minValue="80" maxValue="100" />
@@ -65,12 +68,15 @@
 
             <!-- List containing all files previously uploaded for download -->
             <sm:list id="download-list" values="@{homeBean.downloadListAdapter}" var="item"
-                    scrollSize="10" maxHeight="300px;" scrollOffset="@{item.fileName}">
+                    scrollSize="5" maxHeight="300px;" scrollOffset="@{item.fileName}">
 
-                <!-- Load to present loading when request is done to get more list items via scroll -->
+                <!--
+                    Load component will present loading when request is done to get more
+                    list items via scroll
+                -->
                 <sm:load type="h4" label=" Loading ..." />
 
-                <!-- Template for create each list row -->
+                <!-- Template to create each list row -->
                 <sm:row>
                     <!-- File name -->
                     <sm:header title="@{item.fileName}" />
@@ -80,12 +86,25 @@
                         <sm:param name="file-size" value="@{item.fileSize}" />
                     </sm:text>
 
-                    <!-- Icon to download file -->
-                    <sm:link id="link-download" style="position: absolute; right: 0; top: 0;" label="Download"
-                            outcome="/home?fileName=@{item.fileName}">
+                    <!-- Link to download file which will perform a GET on WebBean -->
+                    <sm:link id="link-download" style="position: absolute; right: 0; top: 0;"
+                            label="Download" outcome="/home?fileName=@{item.fileName}">
+
                         <sm:icon name="glyphicon-cloud-download" />
-                        <sm:load />
                     </sm:link>
+
+                    <!-- Icon to remove file via Ajax request -->
+                    <sm:icon id="delete-file" name="glyphicon-trash" style="float: right; cursor: pointer;" look="danger">
+
+                        <sm:ajax event="click" action="@{homeBean.removeFile}" update="download-list">
+                            <!--
+                                Arg component is used as action method argument on mapped WebBean.
+                                You can declare as much arguments you want but the method must contain
+                                the argument in the order you declared here.
+                             -->
+                            <sm:arg value="@{item.fileName}" />
+                        </sm:ajax>
+                    </sm:icon>
                 </sm:row>
 
                 <!-- Component to present content when list is empty -->
@@ -99,8 +118,17 @@
         <!-- Upload status functions -->
         <script type="text/javascript">
 
+            function uploadStatus(event, position, total, percent) {
+                console.log(event.lengthComputable);
+                console.log(event.loaded);
+                console.log(event.total);
+                console.log(position);
+                console.log(total);
+                console.log(percent);
+            }
+
             <!-- Called every 300ms progress check interval -->
-            function uploadStatus(progress, value) {
+            function progressStatus(progress, value) {
 
             }
         </script>
