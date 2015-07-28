@@ -37,7 +37,7 @@
 
                 <sm:upload id="upload-id" label="@{texts.file.archetype.upload.label}" rightAddOn="upload-btn"
                         placeHolder="@{texts.file.archetype.upload.placeholder}" value="@{homeBean.filePart}"
-                        onUpload="uploadStatus">
+                        onUpload="uploadStatus" onClick="resetUploadStatus()">
 
                     <!-- Validate the maximum length of chose file -->
                     <sm:validate look="warning" text="@{texts.file.archetype.maximum.file.size}" maxLength="1000000" />
@@ -56,10 +56,14 @@
                     </sm:button>
                 </sm:upload>
 
-                <sm:progressgroup id="upload-status" onInterval="progressStatus" interval="300">
-                    <sm:progressbar value="0" look="success" minValue="0" maxValue="40" minWidth="2em" />
-                    <sm:progressbar value="40" look="warning" minValue="40" maxValue="80"  striped="true" withLabel="true" />
-                    <sm:progressbar value="80" look="danger" minValue="80" maxValue="100" />
+                <!--
+                    Progress bar to keep up with upload status.
+                    This progress is updated via onUpload callback set on upload component
+                -->
+                <sm:progressgroup id="upload-status">
+                    <sm:progressbar look="success" value="0" minValue="0" maxValue="40" withLabel="true" minWidth="2em"/>
+                    <sm:progressbar look="warning" value="40" minValue="40" maxValue="80" withLabel="true" striped="true"/>
+                    <sm:progressbar look="danger" value="80" minValue="80" maxValue="100" withLabel="true"/>
                 </sm:progressgroup>
             </sm:form>
         </div>
@@ -118,18 +122,17 @@
         <!-- Upload status functions -->
         <script type="text/javascript">
 
+            /**
+             * Called when the upload is being performed via Ajax.
+             * To abort the upload call Jsmart5.abortRequest('upload-btn')
+             * passing the id of element holding the Ajax request
+             */
             function uploadStatus(event, position, total, percent) {
-                console.log(event.lengthComputable);
-                console.log(event.loaded);
-                console.log(event.total);
-                console.log(position);
-                console.log(total);
-                console.log(percent);
+                Jsmart5.setProgressBar('upload-status', percent);
             }
 
-            <!-- Called every 300ms progress check interval -->
-            function progressStatus(progress, value) {
-
+            function resetUploadStatus() {
+                Jsmart5.setProgressBar('upload-status', 0);
             }
         </script>
     </body>

@@ -54,6 +54,11 @@ public class HomeBean {
             WebContext.addWarning("feedback", WebText.getString("texts", "file.archetype.file.error"));
             validated = false;
         }
+        if (validated && fileMap.get(filePart.getSubmittedFileName()) != null) {
+            WebContext.addWarning("feedback", WebText.getString("texts", "file.archetype.file.exist",
+                    filePart.getSubmittedFileName()));
+            validated = false;
+        }
         return validated;
     }
 
@@ -101,6 +106,25 @@ public class HomeBean {
         } catch (Exception e) {
             WebContext.addWarning("feedback", WebText.getString("texts", "file.archetype.file.read.error", fileName));
         }
+    }
+
+    public void removeFile(String fileName) {
+        Adapter adapter = fileMap.get(fileName);
+        if (adapter == null) {
+            WebContext.addWarning("feedback", WebText.getString("texts", "file.archetype.file.no.exist", fileName));
+            return;
+        }
+
+        File file = new File(adapter.getFileLocation());
+        if (!file.exists()) {
+            WebContext.addWarning("feedback", WebText.getString("texts", "file.archetype.file.no.exist", fileName));
+            return;
+        }
+
+        WebContext.addSuccess("feedback", WebText.getString("texts", "file.archetype.file.removed", fileName));
+
+        file.delete();
+        fileMap.remove(fileName);
     }
 
     public Part getFilePart() {
