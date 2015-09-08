@@ -36,7 +36,7 @@
                         style="text-align: center;" />
 
                 <sm:upload id="upload-id" label="@{texts.file.archetype.upload.label}" rightAddOn="upload-btn"
-                        placeHolder="@{texts.file.archetype.upload.placeholder}" value="@{homeBean.filePart}"
+                        placeholder="@{texts.file.archetype.upload.placeholder}" value="@{homeBean.filePart}"
                         onUpload="uploadStatus" onClick="resetUploadStatus()">
 
                     <!-- Validate the maximum length of chose file -->
