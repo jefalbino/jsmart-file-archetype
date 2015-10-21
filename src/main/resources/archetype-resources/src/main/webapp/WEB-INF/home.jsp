@@ -124,15 +124,15 @@
 
             /**
              * Called when the upload is being performed via Ajax.
-             * To abort the upload call Jsmar5.abortRequest('upload-btn')
+             * To abort the upload call JSmart.abortRequest('upload-btn')
              * passing the id of element holding the Ajax request
              */
             function uploadStatus(event, position, total, percent) {
-                Jsmart.setProgressBar('upload-status', percent);
+                JSmart.setProgressBar('upload-status', percent);
             }
 
             function resetUploadStatus() {
-                Jsmart.setProgressBar('upload-status', 0);
+                JSmart.setProgressBar('upload-status', 0);
             }
         </script>
     </body>
