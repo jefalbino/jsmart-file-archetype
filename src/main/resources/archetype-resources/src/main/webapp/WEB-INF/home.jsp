@@ -1,4 +1,4 @@
-<%@ taglib prefix="sm" uri="http://jsmartframework.com/v2/jsp/taglib/jsmart5" %>
+<%@ taglib prefix="sm" uri="http://jsmartframework.com/v2/jsp/taglib/jsmart" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>JSmart5 Framework - File Archetype</title>
+        <title>JSmart Framework - File Archetype</title>
     </head>
 
     <body class="container">
@@ -124,15 +124,15 @@
 
             /**
              * Called when the upload is being performed via Ajax.
-             * To abort the upload call Jsmart5.abortRequest('upload-btn')
+             * To abort the upload call Jsmar5.abortRequest('upload-btn')
              * passing the id of element holding the Ajax request
              */
             function uploadStatus(event, position, total, percent) {
-                Jsmart5.setProgressBar('upload-status', percent);
+                Jsmart.setProgressBar('upload-status', percent);
             }
 
             function resetUploadStatus() {
-                Jsmart5.setProgressBar('upload-status', 0);
+                Jsmart.setProgressBar('upload-status', 0);
             }
         </script>
     </body>
