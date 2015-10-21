@@ -1,11 +1,11 @@
 package ${package}.bean;
 
-import com.jsmart5.framework.adapter.ListAdapter;
-import com.jsmart5.framework.annotation.PreSubmit;
-import com.jsmart5.framework.annotation.QueryParam;
-import com.jsmart5.framework.util.WebText;
-import com.jsmart5.framework.manager.WebContext;
-import com.jsmart5.framework.annotation.WebBean;
+import com.jsmartframework.web.adapter.ListAdapter;
+import com.jsmartframework.web.annotation.PreSubmit;
+import com.jsmartframework.web.annotation.QueryParam;
+import com.jsmartframework.web.util.WebText;
+import com.jsmartframework.web.manager.WebContext;
+import com.jsmartframework.web.annotation.WebBean;
 
 import java.io.File;
 import java.io.FileOutputStream;
