@@ -24,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @WebBean
 public class HomeBean {
 
+    // This is only for example purposes, but do not use this as production once
+    // it will be exposed for all sessions ;)
     private static final Map<String, Adapter> fileMap = new TreeMap<>();
 
     @Autowired
