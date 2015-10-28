@@ -31,7 +31,7 @@ public class HomeBean {
     @Autowired
     private SpringService springService;
 
-    @QueryParam(name = "fileName")
+    @QueryParam("fileName")
     private String fileName;
 
     private Part filePart;
@@ -48,7 +48,7 @@ public class HomeBean {
         }
     }
 
-    @PreSubmit(forAction = "uploadFile")
+    @PreSubmit(onActions = {"uploadFile"})
     public boolean preUploadFile() {
         boolean validated = true;
 
@@ -144,7 +144,7 @@ public class HomeBean {
     private class DownloadListAdapter extends ListAdapter<Adapter> {
 
         @Override
-        public List<Adapter> load(final int offsetIndex, final Object offset, final int size) {
+        public List<Adapter> load(int offsetIndex, Object offset, int size) {
             if (fileMap.isEmpty()) {
                 return Collections.EMPTY_LIST;
             }
