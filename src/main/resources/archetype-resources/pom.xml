@@ -4,15 +4,15 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-	<groupId>${groupId}</groupId>
+    <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
     <packaging>war</packaging>
 
     <repositories>
         <repository>
-			<id>oss.sonatype</id>
-			<url>https://oss.sonatype.org/content/repositories/releases/</url>
+            <id>oss.sonatype</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
         </repository>
     </repositories>
 
